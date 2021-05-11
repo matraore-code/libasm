@@ -1,17 +1,16 @@
-global ft_write
-extern __errno_location
+global _ft_write
+extern ___error
 
-ft_write:
-	mov	rax, 1
+_ft_write:
+	mov	rax, 0x2000004
 	syscall
-	cmp	rax, 0
-	jl	error
+	jc	error
 	ret
 
 error:
-	neg	rax
-	mov	rdi, rax
-	call	__errno_loctaion
-	mov	[rax], rdi
+	push rax
+	call	___error
+	pop rcx
+	mov	[rax], rcx
 	mov	rax, -1
 	ret

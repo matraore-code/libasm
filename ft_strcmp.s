@@ -1,6 +1,6 @@
-global ft_strcmp
+global _ft_strcmp
 
-ft_strcmp:
+_ft_strcmp:
 	xor	rcx, rcx
 	xor	rax, rax
 
@@ -19,5 +19,5 @@ return:
 	movzx	rax, BYTE[rdi + rcx]
 	movzx	rdx, BYTE[rsi + rcx]
 	sub	rax, rdx
-`	ret
+	ret
 	

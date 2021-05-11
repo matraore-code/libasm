@@ -1,26 +1,23 @@
-global ft_strdup
-extern malloc
-extern ft_strlen
-extern ft_strcpy
-extern __errno_location
+global _ft_strdup
+extern _malloc
+extern _ft_strlen
+extern _ft_strcpy
+extern ___error
 
-ft_strdup:
-	call	ft_strlen
+
+_ft_strdup:
+	call	_ft_strlen
 	push	rdi			
 	inc	rax
 	mov	rdi, rax
-	call	malloc
+	call	_malloc
 	cmp	rax, 0
-	jz	error	
+	je	error	
 	mov	rdi, rax		
 	pop	rsi	
-	call	ft_strcpy
+	call	_ft_strcpy
 	ret
 
 error:
-	neg	rax
-	mov	rdi,	rax
-	call	__errno_location
-	mov	[rax], rdi		
-	mov	rax, -1			
+	mov rax, 0		
 	ret				
